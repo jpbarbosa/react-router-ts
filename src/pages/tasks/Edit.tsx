@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { SingleTaskData } from '../../types/tasks';
+import { Task, SingleTaskData } from '../../types/tasks';
 import { TaskForm } from './Form';
+import { useTasks } from '../../hooks/useTasks';
 import { GET_TASK } from '../../queries/tasks';
 
 interface IParams {
@@ -17,7 +18,10 @@ export const TaskEdit: React.FC = () => {
     variables: { id },
   });
 
-  const handleUpdate = () => {
+  const { updateTask } = useTasks();
+
+  const handleUpdate = (task: Task) => {
+    updateTask({ variables: task });
     history.push('/tasks');
   };
 
