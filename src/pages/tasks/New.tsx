@@ -1,16 +1,13 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
 import { TaskForm } from './Form';
-import { Task, TaskData } from '../../types/tasks';
-import { CREATE_TASK, GET_TASKS } from '../../queries/tasks';
+import { Task } from '../../types/tasks';
+import { useTasks } from '../../hooks/useTasks';
 
 export const TaskNew: React.FC = () => {
   const history = useHistory();
 
-  const [createTask] = useMutation<TaskData>(CREATE_TASK, {
-    refetchQueries: [{ query: GET_TASKS }],
-  });
+  const { createTask } = useTasks();
 
   const handleCreate = (task: Task) => {
     createTask({ variables: task });
