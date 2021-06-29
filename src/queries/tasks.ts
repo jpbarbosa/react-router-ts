@@ -8,3 +8,12 @@ export const GET_TASKS = gql`
     }
   }
 `;
+
+export const GET_TASK = gql`
+  query ($id: ID!) {
+    task(id: $id) {
+      id
+      name
+    }
+  }
+`;
