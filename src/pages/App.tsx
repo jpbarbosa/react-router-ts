@@ -7,7 +7,7 @@ import { HomeIndex } from './home';
 export const App: React.FC = () => {
   return (
     <div>
-      <Router>
+      <Router basename={process.env.REACT_APP_BASENAME}>
         <Header />
         <Switch>
           <Route path="/tasks">
