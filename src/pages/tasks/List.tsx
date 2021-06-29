@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+import { TaskItem } from './Item';
 import { TaskData } from '../../types/tasks';
 import { GET_TASKS } from '../../queries/tasks';
 
@@ -28,7 +29,7 @@ export const TaskList: React.FC = () => {
         <ul>
           {data?.tasks.map((task) => (
             <li key={task.id}>
-              <Link to={`/tasks/${task.id}/edit`}>{task.name}</Link>
+              <TaskItem task={task} />
             </li>
           ))}
         </ul>
