@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
+import { TaskForm } from './Form';
 
 interface IParams {
   id: string;
@@ -7,6 +8,11 @@ interface IParams {
 
 export const TaskEdit: React.FC = () => {
   const { id } = useParams<IParams>();
+  const history = useHistory();
+
+  const handleUpdate = () => {
+    history.push('/tasks');
+  };
 
   return (
     <div className="content">
@@ -14,7 +20,7 @@ export const TaskEdit: React.FC = () => {
         Back
       </Link>
       <h2>Edit</h2>
-      <div>Task ID: {id}</div>
+      <TaskForm activeRecord={{ name: id }} submitAction={handleUpdate} />
     </div>
   );
 };
